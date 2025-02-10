@@ -11,9 +11,9 @@ jobs:
      - name: 1. ssh로 접근.
        uses: appleboy/@v1.0.3
        with:
-         host: ${{secreat.EC2_HOST}}
-         username: ${{secreat.EC2_USERNAME}}
-         key: ${{secreat.EC2_PRIVATE_KEY}}
+         host: ${{secrets.EC2_HOST}}
+         username: ${{secrets.EC2_USERNAME}}
+         key: ${{secrets.EC2_PRIVATE_KEY}}
          script-stop: true
          script: |
            cd /home/ubuntu/depoly-pratice
