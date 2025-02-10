@@ -20,7 +20,7 @@ jobs:
          script-stop: true
          script: |
            cd /home/ubuntu/depoly-pratice
-           git pull origin https://github.com/codingsimul/depoly-pratice.git
+           git pull origin main
            echo "$APPLICATION" > src/main/resources/application.yml
            ./gradlew clean build
            sudo fuser -f -n tcp 8080 || true
