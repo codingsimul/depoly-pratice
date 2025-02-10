@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  first-job:
+   runs-on: ubuntu-lastest
+
+   steps:
+     - name: 1. ssh로 접근.
+       uses: appleboy/@v1.0.3
+       with:
+         host: ${{secreat.EC2_HOST}}
+         username: ${{secreat.EC2_USERNAME}}
+         key: ${{secreat.EC2_PRIVATE_KEY}}
+         script-stop: true
+         script: |
+           cd /home/ubuntu/depoly-pratice
+           git pull https://github.com/codingsimul/depoly-pratice.git
+           ./gradlew clean build
+           sudo fuser -f -n tcp 8080 || true
+           nohup java -jar *SNAPSHOT.jar jar > ./outlog.log 2 >&1 &
