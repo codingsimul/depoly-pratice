@@ -10,14 +10,18 @@ jobs:
    steps:
      - name: 1. ssh로 접근.
        uses: appleboy/ssh-action@v1.0.3
+       env:
+        APPLICATION: ${{secrets.APPLICATION}}
        with:
          host: ${{secrets.EC2_HOST}}
          username: ${{secrets.EC2_USERNAME}}
          key: ${{secrets.EC2_PRIVATE_KEY}}
+         envs: APPLICATION
          script-stop: true
          script: |
-           cd /home/ubuntu/depoly-pratice
+           cd /home/ubuntu/depoly-pratice/resources/application.yml
            git pull https://github.com/codingsimul/depoly-pratice.git
+           echo "$APPLICATION" > src/main/
            ./gradlew clean build
            sudo fuser -f -n tcp 8080 || true
            nohup java -jar *SNAPSHOT.jar jar > ./outlog.log 2 >&1 &
