@@ -19,9 +19,9 @@ jobs:
          envs: APPLICATION
          script-stop: true
          script: |
-           cd /home/ubuntu/depoly-pratice/resources/application.yml
-           git pull https://github.com/codingsimul/depoly-pratice.git
-           echo "$APPLICATION" > src/main/
+           cd /home/ubuntu/depoly-pratice
+           git pull origin https://github.com/codingsimul/depoly-pratice.git
+           echo "$APPLICATION" > src/main/resources/application.yml
            ./gradlew clean build
            sudo fuser -f -n tcp 8080 || true
            nohup java -jar *SNAPSHOT.jar jar > ./outlog.log 2 >&1 &
