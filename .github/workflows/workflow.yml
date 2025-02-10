@@ -24,4 +24,4 @@ jobs:
            echo "$APPLICATION" > src/main/resources/application.yml
            ./gradlew clean build
            sudo fuser -f -n tcp 8080 || true
-           nohup java -jar *SNAPSHOT.jar jar > ./outlog.log 2 >&1 &
+           nohup java -jar build/libs/*SNAPSHOT.jar jar > ./outlog.log 2 >&1 &
