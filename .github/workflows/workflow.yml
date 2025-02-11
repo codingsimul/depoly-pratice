@@ -20,6 +20,9 @@ jobs:
       - name: 3. application.yml 파일 작성
         run: echo "${{secrets.APPLICATION}}" > ./src/main/resources/application.yml
 
+      - name: 3.5. gradlew 권한 부여
+        run: chmod +x ./gradlew
+
       - name: 4. build
         run: ./gradlew clean build
 
